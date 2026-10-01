@@ -1,0 +1,51 @@
+# =========================
+# Frontend - React / Vite
+# =========================
+node_modules/
+dist/
+.vite/
+.env
+.env.*
+!.env.example
+
+# =========================
+# Python AI Service
+# =========================
+ai-service/venv/
+ai-service/__pycache__/
+ai-service/*.pyc
+ai-service/.pytest_cache/
+
+# =========================
+# Java / Spring Boot
+# =========================
+backend/target/
+**/target/
+*.class
+
+# =========================
+# Environment / Secrets
+# =========================
+*.env
+.env
+.env.*
+!.env.example
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+*.iml
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log*

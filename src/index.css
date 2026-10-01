@@ -1,0 +1,659 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7f9;
+}
+
+/* Main Login Page */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Left Section */
+.login-left {
+  width: 50%;
+  background: #0b6e69;
+  color: white;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-left h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.login-left h2 {
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+.login-left > p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.features {
+  margin-top: 40px;
+}
+
+.features div {
+  font-size: 18px;
+  margin: 18px 0;
+}
+
+/* Right Section */
+.login-right {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 45px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.login-box h2 {
+  font-size: 30px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.login-box > p {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* Form */
+.login-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-box input[type="email"],
+.login-box input[type="password"],
+.login-box input[type="text"] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #0b6e69;
+}
+
+/* Password */
+.password-box {
+  display: flex;
+  gap: 8px;
+}
+
+.password-box input {
+  flex: 1;
+}
+
+.password-box button {
+  padding: 0 12px;
+  border: none;
+  background: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Error */
+.error {
+  color: red !important;
+  margin: 10px 0 !important;
+}
+
+/* Login Options */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.login-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.login-options button {
+  border: none;
+  background: none;
+  color: #0b6e69;
+  cursor: pointer;
+}
+
+/* Sign In Button */
+.login-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #0b6e69;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #095752;
+}
+
+/* Security */
+.security {
+  margin-top: 25px;
+  padding: 12px;
+  background: #f0f8f7;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Demo Account */
+.demo {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-left,
+  .login-right {
+    width: 100%;
+  }
+
+  .login-left {
+    padding: 40px 25px;
+  }
+
+  .login-left h1 {
+    font-size: 32px;
+  }
+
+  .login-left h2 {
+    font-size: 28px;
+  }
+
+  .login-right {
+    padding: 25px;
+  }
+
+  .login-box {
+    padding: 30px 20px;
+  }
+}
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f4f7f9;
+}
+
+.dashboard h1 {
+  color: #222;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.dashboard > p {
+  color: #777;
+  margin-bottom: 35px;
+}
+
+/* Dashboard Cards */
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h3 {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.dashboard-card h2 {
+  color: #0b6e69;
+  font-size: 30px;
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .dashboard-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard {
+    padding: 20px;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================
+   SIDEBAR
+========================= */
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f7f9;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background: #0b6e69;
+  color: white;
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo */
+.sidebar-logo {
+  padding: 10px 15px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-logo h2 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.sidebar-logo p {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Menu */
+.sidebar-menu {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-menu button {
+  width: 100%;
+  padding: 13px 15px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sidebar-menu button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-menu button.active {
+  background: white;
+  color: #0b6e69;
+  font-weight: bold;
+}
+
+/* Logout */
+.logout-button {
+  margin-top: auto;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Dashboard Content */
+.dashboard-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.dashboard-content h1 {
+  color: #222;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.dashboard-content > p {
+  color: #777;
+  margin-bottom: 35px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .dashboard-content {
+    padding: 25px;
+  }
+}
+/* =========================
+   MEDICINE INVENTORY
+========================= */
+
+.inventory-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f4f7f9;
+}
+
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.inventory-header h1 {
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.inventory-header p {
+  color: #777;
+}
+
+.add-medicine-button {
+  background: #0b6e69;
+  color: white;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-medicine-button:hover {
+  background: #095752;
+}
+
+/* Table */
+
+.inventory-table-box {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  overflow-x: auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.inventory-table-box table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.inventory-table-box th {
+  background: #f0f5f5;
+  color: #444;
+  text-align: left;
+  padding: 15px;
+  font-size: 14px;
+}
+
+.inventory-table-box td {
+  padding: 16px 15px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  font-size: 14px;
+}
+
+.inventory-table-box tr:hover {
+  background: #fafafa;
+}
+
+/* Status */
+
+.status-safe,
+.status-warning,
+.status-urgent,
+.status-expired {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-safe {
+  background: #e7f7ed;
+  color: #16803c;
+}
+
+.status-warning {
+  background: #fff4d6;
+  color: #a66b00;
+}
+
+.status-urgent {
+  background: #ffe6d9;
+  color: #c54b16;
+}
+
+.status-expired {
+  background: #ffe1e1;
+  color: #c62828;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .inventory-page {
+    padding: 20px;
+  }
+
+  .inventory-header {
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+  }
+}
+/* ============================= */
+/* ADD MEDICINE FORM */
+/* ============================= */
+
+.medicine-form-box {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.medicine-form-box h2 {
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 22px;
+}
+
+.medicine-form-box input {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.medicine-form-box input:focus {
+  border-color: #0b6e69;
+  box-shadow: 0 0 0 2px rgba(11, 110, 105, 0.1);
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.save-button {
+  background: #0b6e69;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-button:hover {
+  background: #095752;
+}
+
+.cancel-button {
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancel-button:hover {
+  background: #ddd;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .medicine-form-box {
+    padding: 20px;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+
+  .save-button,
+  .cancel-button {
+    width: 100%;
+  }
+
+}
+/* ============================= */
+/* INVENTORY SEARCH & FILTER */
+/* ============================= */
+
+.inventory-filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.inventory-filters input {
+  flex: 1;
+  padding: 13px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.inventory-filters input:focus {
+  border-color: #0b6e69;
+}
+
+.inventory-filters select {
+  width: 180px;
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.inventory-filters select:focus {
+  border-color: #0b6e69;
+}
+
+@media (max-width: 768px) {
+
+  .inventory-filters {
+    flex-direction: column;
+  }
+
+  .inventory-filters select {
+    width: 100%;
+  }
+
+}
