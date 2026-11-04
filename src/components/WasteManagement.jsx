@@ -1,6 +1,16 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+
+const getAuthConfig = () => {
+  const token = localStorage.getItem("token");
+
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+};
 
 function WasteManagement({
   currentPage,
@@ -18,38 +28,18 @@ function WasteManagement({
     responsiblePerson: ""
   });
 
-  // =========================
-  // JWT AUTH CONFIG
-  // =========================
-
-  const getAuthConfig = () => {
-
-    const token = localStorage.getItem("token");
-
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    };
-
-  };
-
   const [loadingWaste, setLoadingWaste] = useState(true);
 
   // =========================
   // LOAD WASTE RECORDS
   // =========================
 
-  useEffect(() => {
-    fetchWasteRecords();
-  }, []);
-
-  const fetchWasteRecords = async () => {
+  const fetchWasteRecords = useCallback(async () => {
 
     try {
 
       const response = await axios.get(
-        "http://localhost:8080/api/waste",
+        "/api/waste",
         getAuthConfig()
       );
 
@@ -75,7 +65,11 @@ function WasteManagement({
 
     }
 
-  };
+  }, []);
+
+  useEffect(() => {
+    void Promise.resolve().then(fetchWasteRecords);
+  }, [fetchWasteRecords]);
 
   // =========================
   // EXPIRY STATUS
@@ -268,7 +262,7 @@ function WasteManagement({
     try {
 
       const response = await axios.post(
-        "http://localhost:8080/api/waste",
+        "/api/waste",
         wasteRecord,
         getAuthConfig()
       );
@@ -346,7 +340,7 @@ function WasteManagement({
     try {
 
       await axios.delete(
-        `http://localhost:8080/api/waste/${id}`,
+        `/api/waste/${id}`,
         getAuthConfig()
       );
 

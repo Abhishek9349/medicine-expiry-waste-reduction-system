@@ -1,7 +1,18 @@
 import Sidebar from "./Sidebar";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import BarcodeScanner from "./BarcodeScanner";
+
+const BarcodeScanner = lazy(() => import("./BarcodeScanner"));
+
+const getAuthConfig = () => {
+  const token = localStorage.getItem("token");
+
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+};
 
 // ==========================================
 // EXPIRY STATUS
@@ -71,27 +82,15 @@ function MedicineInventory({
     expiryDate: "",
     price: ""
   });
-const getAuthConfig = () => {
-  const token = localStorage.getItem("token");
-
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  };
-};
   // ========================================
   // LOAD MEDICINES
   // ========================================
 
-  useEffect(() => {
-    fetchMedicines();
-  }, []);
-
-  const fetchMedicines = async () => {
+  const fetchMedicines = useCallback(async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/medicines"
+        "/api/medicines",
+        getAuthConfig()
       );
 
       setMedicines(response.data);
@@ -105,7 +104,11 @@ const getAuthConfig = () => {
         "Backend se medicines load nahi ho paayi."
       );
     }
-  };
+  }, [setMedicines]);
+
+  useEffect(() => {
+    void Promise.resolve().then(fetchMedicines);
+  }, [fetchMedicines]);
 
   // ========================================
   // INPUT CHANGE
@@ -283,7 +286,7 @@ const getAuthConfig = () => {
       const medicineId = medicine.id;
 
       await axios.delete(
-  `http://localhost:8080/api/medicines/${medicineId}`,
+  `/api/medicines/${medicineId}`,
   getAuthConfig()
 );
 
@@ -417,7 +420,7 @@ const getAuthConfig = () => {
 
         const response =
   await axios.put(
-    `http://localhost:8080/api/medicines/${medicineId}`,
+    `/api/medicines/${medicineId}`,
     updatedMedicine,
     getAuthConfig()
   );
@@ -506,7 +509,7 @@ const getAuthConfig = () => {
 
       const response =
   await axios.post(
-    "http://localhost:8080/api/medicines",
+    "/api/medicines",
     newMedicine,
     getAuthConfig()
   );
@@ -687,25 +690,20 @@ const getAuthConfig = () => {
         ================================= */}
 
         {showScanner && (
-
-          <div
-            style={{
-              width: "100%",
-              marginTop: "20px",
-              marginBottom: "20px"
-            }}
-          >
-
-            <BarcodeScanner
-              onScanSuccess={
-                handleBarcodeScan
-              }
-              onClose={() =>
-                setShowScanner(false)
-              }
-            />
-
-          </div>
+          <Suspense fallback={<div role="status">Loading scanner...</div>}>
+            <div
+              style={{
+                width: "100%",
+                marginTop: "20px",
+                marginBottom: "20px"
+              }}
+            >
+              <BarcodeScanner
+                onScanSuccess={handleBarcodeScan}
+                onClose={() => setShowScanner(false)}
+              />
+            </div>
+          </Suspense>
 
         )}
 

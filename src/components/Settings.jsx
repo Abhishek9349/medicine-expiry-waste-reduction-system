@@ -141,7 +141,7 @@ function Settings({
 
       const response =
         await axios.post(
-          "http://localhost:8080/api/auth/change-password",
+          "/api/auth/change-password",
           {
             currentPassword: currentPassword,
             newPassword: newPassword
@@ -592,7 +592,7 @@ function Settings({
                 color: "#555"
               }}
             >
-              http://localhost:8080
+              /api
             </p>
 
           </div>

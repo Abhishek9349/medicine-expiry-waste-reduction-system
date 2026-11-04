@@ -239,7 +239,7 @@ function AIAnalytics({
 
       const response =
         await axios.post(
-          "http://localhost:8080/api/ai/train",
+          "/api/ai/train",
           {},
           getAuthConfig()
         );
@@ -249,10 +249,7 @@ function AIAnalytics({
         response.data
       );
 
-      setAiStatus({
-        ...response.data,
-        trained: true
-      });
+      setAiStatus(response.data);
 
       alert(
         response.data.message ||
@@ -292,7 +289,7 @@ function AIAnalytics({
 
         const response =
           await axios.get(
-            "http://localhost:8080/api/ai/status",
+            "/api/ai/status",
             getAuthConfig()
           );
 
@@ -332,7 +329,7 @@ function AIAnalytics({
 
         const response =
           await axios.post(
-            `http://localhost:8080/api/ai/predict/${medicine.id}`,
+            `/api/ai/predict/${medicine.id}`,
             {},
             getAuthConfig()
           );
@@ -388,7 +385,7 @@ function AIAnalytics({
 
         const response =
           await axios.post(
-            `http://localhost:8080/api/ai/demand-forecast/${medicine.id}`,
+            `/api/ai/demand-forecast/${medicine.id}`,
             {},
             getAuthConfig()
           );

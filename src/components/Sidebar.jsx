@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 function Sidebar({
@@ -19,7 +19,7 @@ function Sidebar({
   // FETCH UNREAD NOTIFICATIONS
   // =========================
 
-  const fetchUnreadNotifications = async () => {
+  const fetchUnreadNotifications = useCallback(async () => {
 
     try {
 
@@ -32,7 +32,7 @@ function Sidebar({
 
       const response =
         await axios.get(
-          "http://localhost:8080/api/notifications",
+          "/api/notifications",
           {
             headers: {
               Authorization:
@@ -60,7 +60,7 @@ function Sidebar({
 
     }
 
-  };
+  }, []);
 
 
   // =========================
@@ -69,9 +69,9 @@ function Sidebar({
 
   useEffect(() => {
 
-    fetchUnreadNotifications();
+    void Promise.resolve().then(fetchUnreadNotifications);
 
-  }, []);
+  }, [fetchUnreadNotifications]);
 
 
   // =========================

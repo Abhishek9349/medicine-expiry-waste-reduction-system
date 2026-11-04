@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 import Login from "./components/Login";
@@ -58,7 +58,7 @@ function App() {
   // LOGOUT
   // ==========================================
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
 
     console.log("Logging out...");
 
@@ -82,13 +82,13 @@ function App() {
     setCurrentPage("dashboard");
 
     console.log("Logout successful.");
-  };
+  }, []);
 
   // ==========================================
   // FETCH MEDICINES
   // ==========================================
 
-  const fetchMedicines = async () => {
+  const fetchMedicines = useCallback(async () => {
 
     const token = localStorage.getItem("token");
 
@@ -108,7 +108,7 @@ function App() {
       );
 
       const response = await axios.get(
-        "http://localhost:8080/api/medicines",
+        "/api/medicines",
         getAuthConfig()
       );
 
@@ -150,13 +150,13 @@ function App() {
       }
 
     }
-  };
+  }, [handleLogout]);
 
   // ==========================================
   // FETCH NOTIFICATIONS
   // ==========================================
 
-  const fetchNotifications = async () => {
+  const fetchNotifications = useCallback(async () => {
 
     const token = localStorage.getItem("token");
 
@@ -176,7 +176,7 @@ function App() {
       );
 
       const response = await axios.get(
-        "http://localhost:8080/api/notifications",
+        "/api/notifications",
         getAuthConfig()
       );
 
@@ -208,7 +208,7 @@ function App() {
       // because medicine API may still work.
 
     }
-  };
+  }, []);
 
   // ==========================================
   // LOAD DATA AFTER LOGIN
@@ -220,10 +220,10 @@ function App() {
       return;
     }
 
-    fetchMedicines();
-    fetchNotifications();
+    void Promise.resolve().then(fetchMedicines);
+    void Promise.resolve().then(fetchNotifications);
 
-  }, [isLoggedIn]);
+  }, [isLoggedIn, fetchMedicines, fetchNotifications]);
 
   // ==========================================
   // UNREAD NOTIFICATION COUNT

@@ -81,7 +81,7 @@ function BarcodeScanner({
 
             await scanner.stop();
 
-          } catch (error) {
+          } catch {
 
             console.log(
               "Scanner already stopped."
@@ -92,7 +92,7 @@ function BarcodeScanner({
 
             await scanner.clear();
 
-          } catch (error) {
+          } catch {
 
             console.log(
               "Scanner already cleared."
@@ -147,7 +147,7 @@ function BarcodeScanner({
               false;
           }
 
-        } catch (error) {
+        } catch {
 
           console.log(
             "Scanner stop handled."
@@ -158,7 +158,7 @@ function BarcodeScanner({
 
           await scanner.clear();
 
-        } catch (error) {
+        } catch {
 
           console.log(
             "Scanner clear handled."
@@ -199,7 +199,7 @@ function BarcodeScanner({
 
           await scannerRef.current.clear();
 
-        } catch (error) {
+        } catch {
 
           console.log(
             "Scanner already cleared."

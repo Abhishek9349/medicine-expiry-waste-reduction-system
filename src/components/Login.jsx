@@ -34,7 +34,7 @@ function Login({ setIsLoggedIn }) {
 
       // Spring Boot backend login API
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        "/api/auth/login",
         {
           email: email,
           password: password

@@ -1,6 +1,16 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+
+const getAuthConfig = () => {
+  const token = localStorage.getItem("token");
+
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+};
 
 function ConsumptionHistory({
   currentPage,
@@ -11,22 +21,7 @@ function ConsumptionHistory({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // JWT token configuration
-  const getAuthConfig = () => {
-    const token = localStorage.getItem("token");
-
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    };
-  };
-
-  useEffect(() => {
-    fetchHistory();
-  }, []);
-
-  const fetchHistory = async () => {
+  const fetchHistory = useCallback(async () => {
 
     try {
 
@@ -44,7 +39,7 @@ function ConsumptionHistory({
       }
 
       const response = await axios.get(
-        "http://localhost:8080/api/consumption-history",
+        "/api/consumption-history",
         getAuthConfig()
       );
 
@@ -106,7 +101,11 @@ function ConsumptionHistory({
       setLoading(false);
 
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    void Promise.resolve().then(fetchHistory);
+  }, [fetchHistory]);
 
   return (
     <div className="dashboard-layout">

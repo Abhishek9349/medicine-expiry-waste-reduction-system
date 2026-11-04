@@ -1,6 +1,16 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+
+const getAuthConfig = () => {
+  const token = localStorage.getItem("token");
+
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+};
 
 function Notifications({
   currentPage,
@@ -10,27 +20,12 @@ function Notifications({
   const [loading, setLoading] = useState(true);
 
   // ==============================
-  // JWT AUTH CONFIG
-  // ==============================
-  const getAuthConfig = () => {
-    const token = localStorage.getItem("token");
-
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    };
-  };
-
-  // ==============================
   // FETCH NOTIFICATIONS
   // ==============================
-  const fetchNotifications = async () => {
+  const fetchNotifications = useCallback(async () => {
     try {
-      setLoading(true);
-
       const response = await axios.get(
-        "http://localhost:8080/api/notifications",
+        "/api/notifications",
         getAuthConfig()
       );
 
@@ -64,14 +59,14 @@ function Notifications({
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   // ==============================
   // LOAD NOTIFICATIONS
   // ==============================
   useEffect(() => {
-    fetchNotifications();
-  }, []);
+    void Promise.resolve().then(fetchNotifications);
+  }, [fetchNotifications]);
 
   // ==============================
   // MARK NOTIFICATION AS READ
@@ -79,7 +74,7 @@ function Notifications({
   const markAsRead = async (id) => {
     try {
       await axios.put(
-        `http://localhost:8080/api/notifications/${id}/read`,
+        `/api/notifications/${id}/read`,
         {},
         getAuthConfig()
       );

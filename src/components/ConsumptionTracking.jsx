@@ -199,7 +199,7 @@ function ConsumptionTracking({
 
       const medicineResponse =
         await axios.put(
-          `http://localhost:8080/api/medicines/${selectedMedicine.id}`,
+          `/api/medicines/${selectedMedicine.id}`,
           updatedMedicine,
           getAuthConfig()
         );
@@ -216,7 +216,7 @@ function ConsumptionTracking({
 
       const historyResponse =
         await axios.post(
-          "http://localhost:8080/api/consumption-history",
+          "/api/consumption-history",
           {
             medicineId:
               selectedMedicine.id,
